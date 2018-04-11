@@ -1,6 +1,7 @@
 //***************
 //  STATE
 //***************
+$function(){
 var chips = 16;
 var playerOneChips = 0;
 var playerTwoChips = 0;
@@ -13,49 +14,49 @@ var playerTwoName = '';
 var chipHTML = '<div class="chip"></div>'; 
 
 // Variables that point to different DOM elements
-var chipContainer =    document.getElementById('chips');
-var playerOneChipsContainer =   document.getElementById('player-one-chips');
-var playerTwoChipsContainer =   document.getElementById('player-two-chips');
-var playerOneTake =    document.getElementById('player-one-take');
-var playerTwoTake =    document.getElementById('player-two-take');
-var playerOnePass =    document.getElementById('player-one-pass');
-var playerTwoPass =    document.getElementById('player-two-pass');
-var playerOneOptions = document.getElementById('player-one-options');
-var playerTwoOptions = document.getElementById('player-two-options');
-var playerOneName =    document.getElementById('player-one-name');
-var playerTwoName =    document.getElementById('player-two-name');
+var chipContainer =    $('#chips');
+var playerOneChipsContainer =   $('#player-one-chips');
+var playerTwoChipsContainer =   $('#player-two-chips');
+var playerOneTake =    $('#player-one-take');
+var playerTwoTake =    $('#player-two-take');
+var playerOnePass =    $('#player-one-pass');
+var playerTwoPass =    $('#player-two-pass');
+var playerOneOptions = $('#player-one-options');
+var playerTwoOptions = $('#player-two-options');
+var playerOneName =    $('#player-one-name');
+var playerTwoName =    $('#player-two-name');
 
 //*****************
 // ACTIONS
 //*****************
 
-function renderGame() {
+var renderGame= function() {
   // First, draw all the chips into the right containers
-  chipContainer.innerHTML = '';
-  playerOneChipsContainer.innerHTML = '';
-  playerTwoChipsContainer.innerHTML = '';
+  chipContainer.html = '';
+  playerOneChipsContainer.html = '';
+  playerTwoChipsContainer.html = '';
   for (var i=0; i<chips; i++) {
-    chipContainer.innerHTML += chipHTML
+    chipContainer.append(chipHTML);
   };
   for (var i=0; i<playerOneChips; i++) {
-    playerOneChipsContainer.innerHTML += chipHTML
+    playerOneChipsContainer.append(chipHTML);
   };
   for (var i=0; i<playerTwoChips; i++) {
-    playerTwoChipsContainer.innerHTML += chipHTML
+    playerTwoChipsContainer.append(chipHTML);
   };
 
   // Show/Hide the appropriate action buttons
   if (currentPlayer == 1) {
-    playerOneOptions.style.visibility = "visible"; 
-    playerTwoOptions.style.visibility = "hidden"; 
+    playerOneOptions.visible(true); 
+    playerTwoOptions.visible(false); 
   } else {
-    playerOneOptions.style.visibility = "hidden"; 
-    playerTwoOptions.style.visibility = "visible"; 
+    playerOneOptions.visible(false); 
+    playerTwoOptions.visible(true); 
   }
 
   // Show the name of each player
-  playerOneName.innerHTML = playerOne;
-  playerTwoName.innerHTML = playerTwo;
+  playerOneName.html(playerOne);
+  playerTwoName.html(playerTwo);
 }
 
 function takeChip() {
@@ -107,22 +108,23 @@ function resetGame() {
 //***********************
 //  KICKING IT ALL OFF
 //***********************
-playerOneTake.onclick = function () {
+playerOneTake.click(function () {
   takeChip();
-}
+});
 
-playerTwoTake.onclick = function() {
+playerTwoTake.click(function() {
   takeChip();
-}
+});
 
-playerOnePass.onclick = function() {
+playerOnePass.click(function() {
   pass();
-}
+});
 
-playerTwoPass.onclick = function() {
+playerTwoPass.click(function() {
   pass();
-}
+});
 
 
 
 resetGame();
+});
